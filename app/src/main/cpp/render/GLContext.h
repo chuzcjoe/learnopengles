@@ -5,9 +5,12 @@
 #ifndef OPENGLES_GLCONTEXT_H
 #define OPENGLES_GLCONTEXT_H
 
+#include "stdint.h"
 #include <GLES3/gl3.h>
 #include "GLBase.h"
 #include "TriangleSample.h"
+#include "TextureLoadSample.h"
+#include "FormatDef.h"
 
 // Singleton class
 class GLContext {
@@ -20,6 +23,7 @@ public:
     void OnDrawFrame();
 
     void setSample(int sample);
+    void setImageData(int pixelFormat, int width, int height, uint8_t* data);
 
     static GLContext* getInstance();
     static void destroyInstance();

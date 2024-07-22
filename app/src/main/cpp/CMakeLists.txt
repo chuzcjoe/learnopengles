@@ -25,7 +25,8 @@ file(GLOB sources
         ${CMAKE_SOURCE_DIR}/opengles.cpp
         ${CMAKE_SOURCE_DIR}/render/*.cpp
         ${CMAKE_SOURCE_DIR}/core/*.cpp
-        ${CMAKE_SOURCE_DIR}/utils/*.cpp)
+        ${CMAKE_SOURCE_DIR}/utils/*.cpp
+        ${CMAKE_SOURCE_DIR}/shaders/*.cpp)
 
 add_library( # Sets the name of the library.
              opengles

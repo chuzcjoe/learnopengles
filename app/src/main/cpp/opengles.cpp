@@ -32,3 +32,12 @@ JNIEXPORT void JNICALL
 Java_com_example_opengles_gl_MyNativeRender_native_1setSample(JNIEnv *env, jobject thiz, jint sample) {
     GLContext::getInstance()->setSample(sample);
 }
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_opengles_gl_MyNativeRender_native_1setImageData(JNIEnv *env, jobject thiz, jint pixel_format, jint width, jint height, jbyteArray bytes) {
+    jsize length = env->GetArrayLength(bytes);
+    uint8_t* buffer = new uint8_t[length];
+    env->GetByteArrayRegion(bytes, 0, length, reinterpret_cast<jbyte*>(buffer));
+    GLContext::getInstance()->setImageData(pixel_format, width, height, buffer);
+    delete[] buffer;
+}

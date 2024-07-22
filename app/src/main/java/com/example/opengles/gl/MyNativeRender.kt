@@ -18,4 +18,6 @@ class MyNativeRender {
     external fun native_DrawFrame()
 
     external fun native_setSample(sample: Int)
+
+    external fun native_setImageData(pixelFormat: Int, width: Int, height: Int, bytes: ByteArray)
 }

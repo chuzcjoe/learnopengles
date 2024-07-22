@@ -1,9 +1,12 @@
 package com.example.opengles
 
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.opengl.GLSurfaceView
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -23,6 +26,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.nio.ByteBuffer
 
 class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
     // Variables
@@ -90,7 +94,38 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
         myViewAdapter.setIndex(mIndex)
         myViewAdapter.addOnItemClickListener(object: CustomAdapter.OnItemClickListener{
             override fun onItemClick(view: View?, position: Int) {
+                mRootView.removeView(mGLSurfaceView)
+                val lp = RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+                )
+                lp.addRule(RelativeLayout.CENTER_IN_PARENT)
+                mGLSurfaceView = MyGLSurfaceView(this@MainActivity, mGLRender)
+                mRootView.addView(mGLSurfaceView, lp)
 
+                val selectIndex = myViewAdapter.getIndex()
+                myViewAdapter.setIndex(position)
+                myViewAdapter.notifyItemChanged(selectIndex)
+                myViewAdapter.notifyItemChanged(position)
+                mIndex = position
+                mGLSurfaceView.renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
+
+                if (mRootView.width != mGLSurfaceView.width || mRootView.height != mGLSurfaceView.height) {
+                    (mGLSurfaceView as MyGLSurfaceView).setAspectRatio(mRootView.width, mRootView.height)
+                }
+
+                mGLRender.setSample(position)
+
+                when (position) {
+                    SAMPLE_TRIANGLE -> {
+                        Log.d(TAG, "Draw a triangle")
+                    }
+                    SAMPLE_LOAD_TEXTURE -> {
+                        loadBitmap(R.drawable.monkey)
+                    }
+                }
+
+                mGLSurfaceView.requestRender()
+                dialog.cancel()
             }
 
         })
@@ -106,9 +141,29 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
         dialog.window?.setContentView(rootView)
     }
 
+    private fun loadBitmap(resId: Int): Bitmap? {
+        val fileStream = this.resources.openRawResource(resId)
+        val bitmap: Bitmap? = BitmapFactory.decodeStream(fileStream)
+        if (bitmap != null) {
+            val buf = ByteBuffer.allocate(bitmap.byteCount)
+            bitmap.copyPixelsToBuffer(buf)
+            val byteArray = buf.array()
+            mGLRender.setImageData(IMAGE_FORMAT_RGBA, bitmap.width, bitmap.height, byteArray)
+            Log.d(TAG, "image width: ${bitmap.width}, image height: ${bitmap.height}")
+        }
+        return bitmap
+    }
+
     companion object {
+        val TAG: String = "OPENGLES"
         val GLOptionList = listOf<String>(
             "Draw A Triangle",
+            "Load Texture"
         )
+
+        const val IMAGE_FORMAT_RGBA = 0x00
+
+        const val SAMPLE_TRIANGLE = 0x00
+        const val SAMPLE_LOAD_TEXTURE = 0x01
     }
 }

@@ -22,4 +22,12 @@ class MyGLRender : GLSurfaceView.Renderer {
     fun initRenderContext() {
         mNativeRender.native_init()
     }
+
+    fun setImageData(pixelFormat: Int, width: Int, height: Int, bytes: ByteArray) {
+        mNativeRender.native_setImageData(pixelFormat, width, height, bytes);
+    }
+
+    fun setSample(sample: Int) {
+        mNativeRender.native_setSample(sample)
+    }
 }

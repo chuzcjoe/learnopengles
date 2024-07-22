@@ -49,5 +49,30 @@ void GLContext::setSample(int sample) {
         case SAMPLE_TRIANGLE:
             mSample = new TriangleSample();
             break;
+        case SAMPLE_LOAD_TEXTURE:
+            mSample = new TextureLoadSample;
+            break;
+        default:
+            break;
+    }
+}
+
+void GLContext::setImageData(int pixelFormat, int width, int height, uint8_t *data) {
+    NativeImage image;
+    image.format = pixelFormat;
+    image.width = width;
+    image.height = height;
+    image.planes[0] = data;
+
+    switch (pixelFormat) {
+        case IMAGE_FORMAT_RGBA:
+            LOGD("Set image data for RGBA Format. Width: %d, Height: %d", width, height);
+            break;
+        default:
+            break;
+    }
+
+    if (mSample) {
+        mSample->loadImage(&image);
     }
 }
