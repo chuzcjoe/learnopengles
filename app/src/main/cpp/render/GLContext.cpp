@@ -3,6 +3,9 @@
 //
 
 #include "GLContext.h"
+#include "TriangleSample.h"
+#include "TextureLoadSample.h"
+#include "VAOVBOSample.h"
 
 GLContext* GLContext::mContext = nullptr;
 
@@ -10,7 +13,10 @@ GLContext::GLContext() {
     mSample = new TriangleSample();
 }
 
-GLContext::~GLContext() {}
+GLContext::~GLContext() {
+    delete mSample;
+    mSample = nullptr;
+}
 
 GLContext *GLContext::getInstance() {
     if (mContext == nullptr) {
@@ -45,12 +51,20 @@ void GLContext::OnDrawFrame() {
 }
 
 void GLContext::setSample(int sample) {
+    if (mSample) {
+        mSample->destroy();
+        delete mSample;
+        mSample = nullptr;
+    }
     switch (sample) {
         case SAMPLE_TRIANGLE:
             mSample = new TriangleSample();
             break;
         case SAMPLE_LOAD_TEXTURE:
-            mSample = new TextureLoadSample;
+            mSample = new TextureLoadSample();
+            break;
+        case SAMPLE_VAO_VBO:
+            mSample = new VAOVBOSample();
             break;
         default:
             break;

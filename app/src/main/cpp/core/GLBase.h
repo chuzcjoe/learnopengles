@@ -10,6 +10,7 @@
 
 #define SAMPLE_TRIANGLE             0
 #define SAMPLE_LOAD_TEXTURE         1
+#define SAMPLE_VAO_VBO              2
 
 class GLBase {
 public:

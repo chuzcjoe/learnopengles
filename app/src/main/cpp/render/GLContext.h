@@ -8,8 +8,6 @@
 #include "stdint.h"
 #include <GLES3/gl3.h>
 #include "GLBase.h"
-#include "TriangleSample.h"
-#include "TextureLoadSample.h"
 #include "FormatDef.h"
 
 // Singleton class

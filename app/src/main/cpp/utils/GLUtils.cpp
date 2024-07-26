@@ -53,7 +53,9 @@ GLuint GLUtils::CreateProgram(const char *vertexShaderSource, const char *fragSh
     program = glCreateProgram();
     if (program) {
         glAttachShader(program, vertexShaderHandle);
+        LOGD("check vertex shader.");
         CheckGLError("glAttachShader");
+        LOGD("check fragment shader.");
         glAttachShader(program, fragShaderHandle);
         CheckGLError("glAttachShader");
         glLinkProgram(program);

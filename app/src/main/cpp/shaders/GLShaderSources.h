@@ -14,3 +14,7 @@ extern const char* TriangleFragmentShader;
 // Texture Load Shader
 extern const char* TextureLoadVertexShader;
 extern const char* TextureLoadFragmentShader;
+
+// VAO VBO Shader
+extern const char* VAOVBOVertexShader;
+extern const char* VAOVBOFragmentShader;
