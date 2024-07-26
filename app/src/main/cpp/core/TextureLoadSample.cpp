@@ -12,8 +12,11 @@ TextureLoadSample::TextureLoadSample() {
 TextureLoadSample::~TextureLoadSample() {}
 
 void TextureLoadSample::init() {
+    // generate a texture
     glGenTextures(1, &mTextureID);
+    // set the texture object as the current activate texture object
     glBindTexture(GL_TEXTURE_2D, mTextureID);
+    // set texture wrapping
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -39,10 +42,10 @@ void TextureLoadSample::draw() {
     };
 
     GLfloat textureCoords[] = {
-            0.0f,  0.0f,        // bottom left
-            0.0f,  1.0f,        // top left
-            1.0f,  1.0f,        // top right
-            1.0f,  0.0f         // bottom right
+            0.0f,  0.0f,        // top left
+            0.0f,  1.0f,        // bottom left
+            1.0f,  1.0f,        // bottom right
+            1.0f,  0.0f         // top right
     };
 
     GLushort indices[] = { 0, 1, 2, 0, 2, 3 };

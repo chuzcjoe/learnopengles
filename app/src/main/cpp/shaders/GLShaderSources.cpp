@@ -22,12 +22,12 @@ const char* TriangleFragmentShader = FRAGMENT_SHADER(
 
 // Texture Load Shader
 const char* TextureLoadVertexShader = VERTEX_SHADER(
-      layout(location = 0) in vec4 aPosition;
+      layout(location = 0) in vec3 aPosition;
       layout(location = 1) in vec2 aTexCoord;
       out vec2 vTexCoord;
       void main() {
-          gl_Position = aPosition;
-          vTexCoord = aTexCoord; // Corrected typo from vTexcoord to aTexCoord
+          gl_Position = vec4(aPosition, 1.);
+          vTexCoord = aTexCoord;
       }
 );
 
