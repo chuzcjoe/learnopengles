@@ -11,6 +11,7 @@
 #define SAMPLE_TRIANGLE             0
 #define SAMPLE_LOAD_TEXTURE         1
 #define SAMPLE_VAO_VBO              2
+#define SAMPLE_FBO                  3
 
 class GLBase {
 public:
@@ -21,7 +22,7 @@ public:
 
     // must implement in samples
     virtual void init() = 0;
-    virtual void draw() = 0;
+    virtual void draw(int width, int height) = 0;
     virtual void destroy() = 0;
 
 protected:

@@ -18,3 +18,10 @@ extern const char* TextureLoadFragmentShader;
 // VAO VBO Shader
 extern const char* VAOVBOVertexShader;
 extern const char* VAOVBOFragmentShader;
+
+// FrameBuffer Shader
+extern const char* FBOOFFScreenVertexShader;
+extern const char* FBOOFFScreenFragmentShader;
+extern const char* FBOOFFScreenSharpenFragmentShader;
+extern const char* FBOONScreenVertexShader;
+extern const char* FBOONScreenFragmentShader;

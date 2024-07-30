@@ -18,7 +18,7 @@ public:
 
     // pure virtual functions
     virtual void init() override;
-    virtual void draw() override;
+    virtual void draw(int width, int height) override;
     virtual void destroy() override;
 private:
     GLuint mTextureID;

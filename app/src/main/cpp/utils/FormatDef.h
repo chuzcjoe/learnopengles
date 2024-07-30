@@ -57,6 +57,14 @@ public:
                 break;
         }
     }
+
+    static void freeNativeImage(NativeImage* image) {
+        if (image == nullptr || image->planes[0] == nullptr) return;
+        delete image->planes[0];
+        image->planes[0] = nullptr;
+        image->planes[1] = nullptr;
+        image->planes[2] = nullptr;
+    }
 };
 
 

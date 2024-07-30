@@ -6,6 +6,7 @@
 #include "TriangleSample.h"
 #include "TextureLoadSample.h"
 #include "VAOVBOSample.h"
+#include "FBOSample.h"
 
 GLContext* GLContext::mContext = nullptr;
 
@@ -46,7 +47,7 @@ void GLContext::OnDrawFrame() {
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     if (mSample) {
         mSample->init();
-        mSample->draw();
+        mSample->draw(mWidth, mHeight);
     }
 }
 
@@ -65,6 +66,9 @@ void GLContext::setSample(int sample) {
             break;
         case SAMPLE_VAO_VBO:
             mSample = new VAOVBOSample();
+            break;
+        case SAMPLE_FBO:
+            mSample = new FBOSample();
             break;
         default:
             break;

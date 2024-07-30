@@ -125,6 +125,10 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
                     SAMPLE_VAO_VBO -> {
                         Log.d(TAG, "VAO and VBO sample")
                     }
+                    SAMPLE_FBO -> {
+                        loadBitmap(R.drawable.monkey)
+                        Log.d(TAG, "FBO sample")
+                    }
                 }
 
                 mGLSurfaceView.requestRender()
@@ -162,7 +166,8 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
         val GLOptionList = listOf<String>(
             "Draw A Triangle",
             "Load Texture",
-            "VAO and VBO"
+            "VAO and VBO",
+            "FBO"
         )
 
         const val IMAGE_FORMAT_RGBA = 0x00
@@ -170,5 +175,6 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
         const val SAMPLE_TRIANGLE = 0x00
         const val SAMPLE_LOAD_TEXTURE = 0x01
         const val SAMPLE_VAO_VBO = 0x02
+        const val SAMPLE_FBO = 0x03;
     }
 }

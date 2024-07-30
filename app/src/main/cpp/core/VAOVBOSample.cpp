@@ -53,7 +53,7 @@ void VAOVBOSample::init() {
 }
 
 
-void VAOVBOSample::draw() {
+void VAOVBOSample::draw(int width, int height) {
     if (mShaderProgram == GL_NONE) return;
     glClear(GL_STENCIL_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 1.0, 1.0, 1.0);

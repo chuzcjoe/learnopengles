@@ -13,7 +13,7 @@ void TriangleSample::init() {
     mShaderProgram = GLUtils::CreateProgram(TriangleVertexShader, TriangleFragmentShader, mVertexShader, mFragmentShader);
 }
 
-void TriangleSample::draw() {
+void TriangleSample::draw(int width, int height) {
     GLfloat vVertices[] = {
             0.0f,  0.5f, 0.0f,
             -0.5f, -0.5f, 0.0f,

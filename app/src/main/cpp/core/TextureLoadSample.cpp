@@ -9,7 +9,9 @@ TextureLoadSample::TextureLoadSample() {
     mTextureID = 0;
 }
 
-TextureLoadSample::~TextureLoadSample() {}
+TextureLoadSample::~TextureLoadSample() {
+    NativeImageUtils::freeNativeImage(&mImage);
+}
 
 void TextureLoadSample::init() {
     // generate a texture
@@ -31,7 +33,7 @@ void TextureLoadSample::init() {
     }
 }
 
-void TextureLoadSample::draw() {
+void TextureLoadSample::draw(int width, int height) {
     if (mShaderProgram == GL_NONE || mTextureID == GL_NONE) return;
 
     GLfloat vertices[] = {
