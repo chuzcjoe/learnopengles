@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.opengl.GLSurfaceView
+import android.opengl.GLSurfaceView.RENDERMODE_CONTINUOUSLY
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -129,6 +130,12 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
                         loadBitmap(R.drawable.monkey)
                         Log.d(TAG, "FBO sample")
                     }
+                    SAMPLE_TRANSFORMATION -> {
+                        // continuously draw to show transformation animation
+                        mGLSurfaceView.renderMode = RENDERMODE_CONTINUOUSLY
+                        loadBitmap(R.drawable.monkey)
+                        Log.d(TAG, "Transformation sample")
+                    }
                 }
 
                 mGLSurfaceView.requestRender()
@@ -167,7 +174,8 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
             "Draw A Triangle",
             "Load Texture",
             "VAO and VBO",
-            "FBO"
+            "FBO",
+            "Transformation"
         )
 
         const val IMAGE_FORMAT_RGBA = 0x00
@@ -176,5 +184,6 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
         const val SAMPLE_LOAD_TEXTURE = 0x01
         const val SAMPLE_VAO_VBO = 0x02
         const val SAMPLE_FBO = 0x03;
+        const val SAMPLE_TRANSFORMATION = 0x04;
     }
 }

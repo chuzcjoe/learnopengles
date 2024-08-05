@@ -19,7 +19,8 @@ include_directories(
         render
         core
         shaders
-        utils)
+        utils
+        glm)
 
 file(GLOB sources
         ${CMAKE_SOURCE_DIR}/opengles.cpp

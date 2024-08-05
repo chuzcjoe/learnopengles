@@ -18,7 +18,6 @@ void FBOSample::loadImage(NativeImage *image) {
         mImage.height = image->height;
         mImage.format = image->format;
         NativeImageUtils::copyImage(image, &mImage);
-        mRatio =
         LOGD("Loaded image, width: %d, height: %d\n", mImage.width, mImage.height);
     }
 }

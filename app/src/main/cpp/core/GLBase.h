@@ -12,6 +12,7 @@
 #define SAMPLE_LOAD_TEXTURE         1
 #define SAMPLE_VAO_VBO              2
 #define SAMPLE_FBO                  3
+#define SAMPLE_TRANSFORMATION       4
 
 class GLBase {
 public:
@@ -19,11 +20,14 @@ public:
     virtual ~GLBase() {}
 
     virtual void loadImage(NativeImage* image) {};
+    virtual void updateTransformationMatrix(float rotationX, float rotationY, float scaleX, float scaleY) {};
 
     // must implement in samples
     virtual void init() = 0;
     virtual void draw(int width, int height) = 0;
     virtual void destroy() = 0;
+
+    constexpr static const float PI = 3.1415926;
 
 protected:
     GLuint mVertexShader;

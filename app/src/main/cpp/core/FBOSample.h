@@ -38,8 +38,6 @@ private:
     GLuint mFBOVertexShader;
     GLuint mFBOFragmentShader;
     GLint mOffScreenSamplerLoc;
-
-    GLfloat  mRatio;
 };
 
 

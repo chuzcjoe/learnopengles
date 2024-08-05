@@ -88,33 +88,6 @@ const char* FBOOFFScreenFragmentShader = FRAGMENT_SHADER(
      }
 );
 
-const char* FBOOFFScreenSharpenFragmentShader = FRAGMENT_SHADER(
-     precision mediump float;
-     in vec2 vTexCoord;
-     uniform sampler2D offScreenTexture;
-     out vec4 FragColor;
-
-     void main() {
-         vec2 texelSize = 1.0 / vec2(textureSize(offScreenTexture, 0));
-         vec3 color = vec3(0.0);
-
-         mat3 kernel = mat3(
-                 0.0, -1.0, 0.0,
-                 -1.0,  5.0, -1.0,
-                 0.0, -1.0, 0.0
-         );
-
-         for (int i = -1; i <= 1; i++) {
-             for (int j = -1; j <= 1; j++) {
-                 vec2 offset = vec2(float(i), float(j)) * texelSize;
-                 color += texture(offScreenTexture, vTexCoord + offset).rgb * kernel[i + 1][j + 1];
-             }
-         }
-
-         FragColor = vec4(color, 1.0);
-     }
-);
-
 const char* FBOONScreenVertexShader = VERTEX_SHADER(
        layout(location = 0) in vec3 aPosition;
        layout(location = 1) in vec2 aTexCoord;
@@ -132,6 +105,29 @@ const char* FBOONScreenFragmentShader = FRAGMENT_SHADER(
         out vec4 FragColor;
         void main() {
             FragColor = texture(onScreenTexture, vTexCoord);
-            // FragColor = vec4(0.0, 1.0, 0.0, 1.0);
         }
+);
+
+
+// Transformation Shaders
+const char* TransformationVertexShader = VERTEX_SHADER(
+      layout(location = 0) in vec3 aPosition;
+      layout(location = 1) in vec2 aTexCoord;
+      uniform mat4 MVPMatrix;
+      out vec2 vTexCoord;
+      void main() {
+          gl_Position = MVPMatrix * vec4(aPosition, 1.0);
+          vTexCoord = aTexCoord;
+      }
+);
+
+const char* TransformationFragmentShader = FRAGMENT_SHADER(
+    precision mediump float;
+    in vec2 vTexCoord;
+    uniform sampler2D TextureMap;
+    out vec4 FragColor;
+    void main() {
+        FragColor = texture(TextureMap, vTexCoord);
+        // FragColor = vec4(0., 1., 0., 1.);
+    }
 );

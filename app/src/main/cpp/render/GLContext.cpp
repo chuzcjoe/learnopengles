@@ -7,6 +7,7 @@
 #include "TextureLoadSample.h"
 #include "VAOVBOSample.h"
 #include "FBOSample.h"
+#include "TransformationSample.h"
 
 GLContext* GLContext::mContext = nullptr;
 
@@ -69,6 +70,9 @@ void GLContext::setSample(int sample) {
             break;
         case SAMPLE_FBO:
             mSample = new FBOSample();
+            break;
+        case SAMPLE_TRANSFORMATION:
+            mSample = new TransformationSample();
             break;
         default:
             break;

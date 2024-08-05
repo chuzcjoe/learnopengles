@@ -22,6 +22,9 @@ extern const char* VAOVBOFragmentShader;
 // FrameBuffer Shader
 extern const char* FBOOFFScreenVertexShader;
 extern const char* FBOOFFScreenFragmentShader;
-extern const char* FBOOFFScreenSharpenFragmentShader;
 extern const char* FBOONScreenVertexShader;
 extern const char* FBOONScreenFragmentShader;
+
+// Transformation Shader
+extern const char* TransformationVertexShader;
+extern const char* TransformationFragmentShader;
