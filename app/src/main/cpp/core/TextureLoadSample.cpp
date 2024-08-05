@@ -87,4 +87,5 @@ void TextureLoadSample::destroy() {
         glDeleteTextures(1, &mTextureID);
         mShaderProgram = GL_NONE;
     }
+    NativeImageUtils::freeNativeImage(&mImage);
 }

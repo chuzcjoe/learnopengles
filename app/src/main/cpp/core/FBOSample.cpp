@@ -172,4 +172,5 @@ void FBOSample::destroy() {
     glDeleteBuffers(3, mVBO);
     glDeleteVertexArrays(2, mVAO);
     glDeleteFramebuffers(1, &mFBO);
+    NativeImageUtils::freeNativeImage(&mImage);
 }

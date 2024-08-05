@@ -132,5 +132,10 @@ void TransformationSample::draw(int width, int height) {
 }
 
 void TransformationSample::destroy() {
-
+    glDeleteProgram(mShaderProgram);
+    glDeleteTextures(1, &mTextureID);
+    glDeleteVertexArrays(1, &mVAO);
+    glDeleteBuffers(1, &mVBO);
+    glDeleteBuffers(1, &mEBO);
+    NativeImageUtils::freeNativeImage(&mImage);
 }
