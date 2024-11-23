@@ -9,6 +9,8 @@ class MyNativeRender {
 
     external fun native_init()
 
+    external fun native_initSample()
+
     external fun native_uninit()
 
     external fun native_SurfaceCreated()

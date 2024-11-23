@@ -30,4 +30,8 @@ class MyGLRender : GLSurfaceView.Renderer {
     fun setSample(sample: Int) {
         mNativeRender.native_setSample(sample)
     }
+
+    fun initSample() {
+        mNativeRender.native_initSample()
+    }
 }

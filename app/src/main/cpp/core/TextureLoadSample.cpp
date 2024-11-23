@@ -34,6 +34,7 @@ void TextureLoadSample::init() {
 }
 
 void TextureLoadSample::draw(int width, int height) {
+    LOGD("Draw Texture");
     if (mShaderProgram == GL_NONE || mTextureID == GL_NONE) return;
 
     GLfloat vertices[] = {

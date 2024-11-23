@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
 
         mRootView = findViewById<View>(R.id.rootView) as ViewGroup
         mRootView.viewTreeObserver.addOnGlobalLayoutListener(this)
+        mGLSurfaceView = MyGLSurfaceView(this, mGLRender, null)
         mGLRender.initRenderContext()
     }
 
@@ -51,7 +52,6 @@ class MainActivity : AppCompatActivity(), OnGlobalLayoutListener {
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
         )
         lp.addRule(RelativeLayout.CENTER_IN_PARENT)
-        mGLSurfaceView = MyGLSurfaceView(this, mGLRender, null)
         mRootView.addView(mGLSurfaceView, lp)
         mGLSurfaceView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
     }

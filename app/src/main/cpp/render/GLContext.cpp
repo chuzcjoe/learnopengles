@@ -98,3 +98,11 @@ void GLContext::setImageData(int pixelFormat, int width, int height, uint8_t *da
         mSample->loadImage(&image);
     }
 }
+
+void GLContext::initSample() {
+    LOGD("initSample1");
+    if (mSample) {
+        LOGD("initSample2");
+        mSample->init();
+    }
+}

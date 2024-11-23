@@ -17,6 +17,7 @@ TransformationSample::TransformationSample() {
     mAngleY = 0;
     mScaleX = 1.0f;
     mScaleY = 1.0f;
+    mShaderProgram = 0;
 }
 
 TransformationSample::~TransformationSample() {
@@ -43,6 +44,7 @@ void TransformationSample::init() {
 
     GLushort indices[6] = {0, 1, 2, 0, 2, 3};
 
+    if (mShaderProgram) return;
     mShaderProgram = GLUtils::CreateProgram(TransformationVertexShader, TransformationFragmentShader, mVertexShader, mFragmentShader);
     if (!mShaderProgram) {
         LOGE("create shader program error.");
@@ -115,7 +117,7 @@ void TransformationSample::updateMVP(glm::mat4 &mvp, int angleX, int angleY, flo
 }
 
 void TransformationSample::draw(int width, int height) {
-    LOGD("draw transformation sample.");
+    LOGD("draw transformation sample. mAngleX: %d, mAngleY: %d", mAngleX, mAngleY);
     if (mShaderProgram == GL_NONE) return;
 
     mAngleX = (mAngleX + 1) % 360;

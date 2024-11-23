@@ -41,3 +41,8 @@ Java_com_example_opengles_gl_MyNativeRender_native_1setImageData(JNIEnv *env, jo
     GLContext::getInstance()->setImageData(pixel_format, width, height, buffer);
     delete[] buffer;
 }
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_opengles_gl_MyNativeRender_native_1initSample(JNIEnv *env, jobject thiz) {
+    GLContext::getInstance()->initSample();
+}

@@ -23,6 +23,8 @@ public:
     void setSample(int sample);
     void setImageData(int pixelFormat, int width, int height, uint8_t* data);
 
+    void initSample();
+
     static GLContext* getInstance();
     static void destroyInstance();
 
